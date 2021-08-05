@@ -1,4 +1,4 @@
-const { species, employees } = require('./data');
+// const { species, employees } = require('./data');
 const data = require('./data');
 
 function getSpeciesByIds(...ids) {
@@ -15,11 +15,10 @@ function getAnimalsOlderThan(animal, age) {
 
 function getEmployeeByName(employeeName) {
   // seu código aqui
-  if (!employeeName) return {};
-  const collaborativePerson = data.employees.find((person) => {
-    return person.firstName === employeeName || person.lastName === employeeName;
-  });
-  return collaborativePerson;
+  // I placed the code more smaller for lint to stay happy
+  const emp = employeeName;
+  if (!emp) return {};
+  return data.employees.find((person) => person.firstName === emp || person.lastName === emp);
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -45,11 +44,18 @@ function isManager(id) {
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
   // seu código aqui
-
+  const newObj = {
+    id,
+    firstName,
+    lastName,
+    managers,
+    responsibleFor,
+  };
+  data.employees.push(newObj);
+  return newObj;
 }
 
-
-function countAnimals(species) {
+function countAnimals(especies) {
   // seu código aqui
 }
 
