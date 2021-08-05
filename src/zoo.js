@@ -40,9 +40,7 @@ function createEmployee(personalInfo, associatedWith) {
 
 function isManager(id) {
   // seu código aqui
-  const gerentes = module.exports.employees.some((gerente) => {
-    
-  })
+  return data.employees.some((personCollaborator) => personCollaborator.managers.includes(id));
 }
 
 function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
