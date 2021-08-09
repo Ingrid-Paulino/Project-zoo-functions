@@ -55,10 +55,16 @@ function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []
   return newObj;
 }
 
-function countAnimals(especiess) {
+function countAnimals(speciess) {
   // seu código aqui
+  if (speciess) return species.find((animal) => animal.name === speciess).residents.length;
 
+  return species.reduce((acc, curr) => {
+    acc[curr.name] = curr.residents.length;
+    return acc;
+  }, {});
 }
+console.log(countAnimals('lions'));
 
 function calculateEntry(entrants) {
   // seu código aqui
@@ -72,6 +78,8 @@ function calculateEntry(entrants) {
 
 function getAnimalMap(options) {
   // seu código aqui
+  // usar map
+  // vamos filtrar por ordem alfabetica e genero , sort
 }
 
 function getSchedule(dayName) {
@@ -84,7 +92,6 @@ function getOldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
-
 }
 
 function getEmployeeCoverage(idOrName) {
