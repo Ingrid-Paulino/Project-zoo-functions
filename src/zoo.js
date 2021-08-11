@@ -64,7 +64,6 @@ function countAnimals(speciess) {
     return acc;
   }, {});
 }
-console.log(countAnimals('lions'));
 
 function calculateEntry(entrants) {
   // seu código aqui
@@ -80,6 +79,7 @@ function getAnimalMap(options) {
   // seu código aqui
   // usar map
   // vamos filtrar por ordem alfabetica e genero , sort
+
 }
 
 function getSchedule(dayName) {
@@ -92,6 +92,10 @@ function getOldestFromFirstSpecies(id) {
 
 function increasePrices(percentage) {
   // seu código aqui
+  prices.Adult = Math.round((percentage / 100) * prices.Adult * 100 + prices.Adult * 100) / 100;
+  prices.Senior = Math.round((percentage / 100) * prices.Senior * 100 + prices.Senior * 100) / 100;
+  prices.Child = Math.round((percentage / 100) * prices.Child * 100 + prices.Child * 100) / 100;
+  return prices;
 }
 
 function getEmployeeCoverage(idOrName) {
