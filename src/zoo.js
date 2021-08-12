@@ -1,5 +1,5 @@
-const { species, employees, prices } = require('./data');
-const data = require('./data');
+const { species, employees, prices, hours } = require("./data");
+const data = require("./data");
 
 function getSpeciesByIds(...ids) {
   // seu código aqui
@@ -18,7 +18,9 @@ function getEmployeeByName(employeeName) {
   // I placed the code more smaller for lint to stay happy
   const emp = employeeName;
   if (!emp) return {};
-  return employees.find((person) => person.firstName === emp || person.lastName === emp);
+  return employees.find(
+    (person) => person.firstName === emp || person.lastName === emp
+  );
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -33,16 +35,23 @@ function createEmployee(personalInfo, associatedWith) {
     managers,
     responsibleFor,
   };
-  employees.push((newCollaborator));
+  employees.push(newCollaborator);
   return newCollaborator;
 }
 
 function isManager(id) {
   // seu código aqui
-  return employees.some((personCollaborator) => personCollaborator.managers.includes(id));
+  return employees.some((personCollaborator) =>
+    personCollaborator.managers.includes(id));
 }
 
-function addEmployee(id, firstName, lastName, managers = [], responsibleFor = []) {
+function addEmployee(
+  id,
+  firstName,
+  lastName,
+  managers = [],
+  responsibleFor = [],
+) {
   // seu código aqui
   const newObj = {
     id,
@@ -79,7 +88,6 @@ function getAnimalMap(options) {
   // seu código aqui
   // usar map
   // vamos filtrar por ordem alfabetica e genero , sort
-
 }
 
 function getSchedule(dayName) {
@@ -88,6 +96,12 @@ function getSchedule(dayName) {
 
 function getOldestFromFirstSpecies(id) {
   // seu código aqui
+  const filtrarColaboradorId = employees.find((colaborador) => colaborador.id === id);
+  const animalId = filtrarColaboradorId.responsibleFor[0];
+  const specieDadosId = species.find((resident) => resident.id === animalId);
+  const maiorIdade = specieDadosId.residents.sort((a, b) => b.age - a.age);
+  const dadosAnimalMaiorAge = maiorIdade[0];
+  return Object.values(dadosAnimalMaiorAge);
 }
 
 function increasePrices(percentage) {
