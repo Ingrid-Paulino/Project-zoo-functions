@@ -1,10 +1,10 @@
-const { species, employees, prices, hours } = require("./data");
-const data = require("./data");
+const { species, employees, prices, hours } = require('./data');
+const data = require('./data');
 
 function getSpeciesByIds(...ids) {
   // seu código aqui
   if (ids.length === 0) return [];
-  return ids.map((id) => species.find((animal) => animal.id === id));
+  return ids.map((id) => data.species.find((animal) => animal.id === id));
 }
 
 function getAnimalsOlderThan(animal, age) {
@@ -18,9 +18,7 @@ function getEmployeeByName(employeeName) {
   // I placed the code more smaller for lint to stay happy
   const emp = employeeName;
   if (!emp) return {};
-  return employees.find(
-    (person) => person.firstName === emp || person.lastName === emp
-  );
+  return employees.find((person) => person.firstName === emp || person.lastName === emp);
 }
 
 function createEmployee(personalInfo, associatedWith) {
@@ -92,7 +90,16 @@ function getAnimalMap(options) {
 
 function getSchedule(dayName) {
   // seu código aqui
+  const valores = Object.values(hours);
+  const cronoParaHumanos = Object.keys(hours).reduce((acc, curr, index) => {
+    acc[curr] = `Open from ${valores[index].open}am until ${valores[index].close - 12}pm`;
+    return acc;
+  }, {});
+  console.log(cronoParaHumanos);
+  cronoParaHumanos.Monday = 'CLOSED';
+  return !dayName ? cronoParaHumanos : { [dayName]: cronoParaHumanos[dayName] };
 }
+getSchedule();
 
 function getOldestFromFirstSpecies(id) {
   // seu código aqui
