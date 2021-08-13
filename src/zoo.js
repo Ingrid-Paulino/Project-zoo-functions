@@ -95,7 +95,6 @@ function getSchedule(dayName) {
     acc[curr] = `Open from ${valores[index].open}am until ${valores[index].close - 12}pm`;
     return acc;
   }, {});
-  console.log(cronoParaHumanos);
   cronoParaHumanos.Monday = 'CLOSED';
   return !dayName ? cronoParaHumanos : { [dayName]: cronoParaHumanos[dayName] };
 }
@@ -120,7 +119,20 @@ function increasePrices(percentage) {
 }
 
 function getEmployeeCoverage(idOrName) {
-  // seu código aqui
+  if (!idOrName) { return employees.reduce((acc, curr) => {
+    acc[`${curr.firstName} ${curr.lastName}`] = curr.responsibleFor.map((id) => species.find((animal) => id === animal.id).name);
+    return acc;
+  }, {});
+  }
+  const employee = employees.find((escolha) => {
+    const escolhaId = escolha.id;
+    const escolhaFirstName = escolha.firstName;
+    const escolhaLastName = escolha.lastName;
+    return escolhaId === idOrName || escolhaFirstName === idOrName || escolhaLastName === idOrName;
+  });
+  const listIdAnimal = employee.responsibleFor;
+  const lId = listIdAnimal.map((idAnimal) => species.find((specie) => specie.id === idAnimal).name); // lId - lista de id dos animais
+  return { [`${employee.firstName} ${employee.lastName}`]: lId };
 }
 
 module.exports = {
