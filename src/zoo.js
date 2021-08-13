@@ -119,11 +119,12 @@ function increasePrices(percentage) {
 }
 
 function getEmployeeCoverage(idOrName) {
-  if (!idOrName) { return employees.reduce((acc, curr) => {
-    acc[`${curr.firstName} ${curr.lastName}`] = curr.responsibleFor
-      .map((id) => species.find((animal) => id === animal.id).name);
-    return acc;
-  }, {});
+  if (!idOrName) {
+    return employees.reduce((acc, curr) => {
+      acc[`${curr.firstName} ${curr.lastName}`] = curr.responsibleFor
+        .map((id) => species.find((animal) => id === animal.id).name);
+      return acc;
+    }, {});
   }
   const employee = employees.find((escolha) => escolha.id === idOrName
   || escolha.lastName === idOrName || escolha.firstName === idOrName);
