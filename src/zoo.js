@@ -84,10 +84,8 @@ function calculateEntry(entrants) {
 
 function getAnimalMap(options) {
   // seu código aqui
-  // usar map
-  // vamos filtrar por ordem alfabetica e genero , sort
 }
-
+console.log(getAnimalMap());
 function getSchedule(dayName) {
   // seu código aqui
   const valores = Object.values(hours);
